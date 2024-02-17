@@ -21,11 +21,11 @@ void bubble_sort(int *array, size_t size)
 				array[j] = array[j + 1];
 				array[j + 1] = temp;
 				swap_no++;
+				print_array(array, size);
 			}
 		}
 		if (swap_no > 0)
 		{
-			print_array(array, size);
 			swap_no = 0;
 		}
 		else
