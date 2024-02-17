@@ -27,8 +27,8 @@ void selection_sort(int *array, size_t size)
 				print_array(array, size);
 				sort_no++;
 			}
-			if (sort_no == 0)
-				break;
 		}
+		if (sort_no == 0)
+				break;
 	}
 }
