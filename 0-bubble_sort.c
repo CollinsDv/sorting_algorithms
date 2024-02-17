@@ -24,6 +24,7 @@ void bubble_sort(int *array, size_t size)
 			}
 		}
 		if swap_no > 0
+			print(array);
 			swap_no = 0;
 		else
 			break;
