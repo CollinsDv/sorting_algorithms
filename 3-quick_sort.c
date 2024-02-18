@@ -24,8 +24,11 @@ void swap(int *p, int *q)
 void quick_sort(int *array, size_t size)
 {
 	/* will identify the upper and lower bound indices */
-	recursion_sort(array, 0, size - 1, size);
-	srand(time(NULL));
+	if (array && size > 1)
+	{
+		recursion_sort(array, 0, size - 1, size);
+		srand(time(NULL));
+	}
 }
 
 /**
@@ -71,9 +74,10 @@ int partition(int *array, int start, int last, int size)
 		{
 			swap(&array[i], &array[j]);
 			i++;
+			/* print_array(array ,size); */
 		}
 	}
-	swap(&array[i], &array[j]);
+	swap(&array[i], &array[last]);
 	print_array(array, size);
 	return (i);
 }
