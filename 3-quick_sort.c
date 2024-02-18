@@ -1,10 +1,6 @@
 #include "sort.h"
 #include <time.h>
 
-void quick_sort(int *array, size_t size);
-void recursion_sort(int *array, int start, int last, int size);
-int partition(int *array, int start, int last, int size);
-
 /**
  * swap - swaps array index values
  *
@@ -64,7 +60,10 @@ void recursion_sort(int *array, int start, int last, int size)
 int partition(int *array, int start, int last, int size)
 {
 	int i, j, pivot_value, pivot_index;
-
+	
+	/* create a randomised index value that replaces the 
+	 * last array index value using rand function
+	 */
 	pivot_index = start + (rand() % (last - start));
 
 	if (pivot_index != last)
@@ -80,9 +79,9 @@ int partition(int *array, int start, int last, int size)
 		{
 			swap(&array[i], &array[j]);
 			i++;
-			print_array(array, size);
 		}
 	}
 	swap(&array[i], &array[j]);
+	print_array(array, size);
 	return (i);
 }

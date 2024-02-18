@@ -7,6 +7,7 @@
 #include <stdarg.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <time.h>
 
 /**
  * struct listint_s - Doubly linked list node
@@ -26,5 +27,7 @@ void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
+void recursion_sort(int *array, int start, int last, int size);
+int partition(int *array, int start, int last, int size);
 
 #endif
