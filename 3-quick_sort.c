@@ -26,7 +26,7 @@ void swap(int *p, int *q)
  * @size: size of the array
  */
 void quick_sort(int *array, size_t size)
-{	
+{
 	/* will identify the upper and lower bound indices */
 	recursion_sort(array, 0, size - 1, size);
 	srand(time(NULL));
@@ -34,10 +34,11 @@ void quick_sort(int *array, size_t size)
 
 /**
  * recursion_sort - a recursion of the quick_sort algorithm
- * 
+ *
  * @array: pointer to array
  * @start: 1st index
  * @last: last index
+ * @size: size of array
  */
 void recursion_sort(int *array, int start, int last, int size)
 {
@@ -58,6 +59,7 @@ void recursion_sort(int *array, int start, int last, int size)
  * @array: pointer to array
  * @start: pointer to start value index
  * @last: pointer to last value index
+ * @size: size of array
  */
 int partition(int *array, int start, int last, int size)
 {
@@ -82,18 +84,5 @@ int partition(int *array, int start, int last, int size)
 		}
 	}
 	swap(&array[i], &array[j]);
-	return i;
+	return (i);
 }
-
-int main()
-{
-	int array[] = {19, 48, 99, 71, 13, 52, 96, 73, 86, 7};
-	size_t n = sizeof(array) / sizeof(array[0]);
-
-	print_array(array, n);
-	printf("\n");
-	quick_sort(array, n);
-	printf("\n");
-	print_array(array, n);
-	return (0);
-}	
