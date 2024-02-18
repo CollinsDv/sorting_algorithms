@@ -60,8 +60,9 @@ void recursion_sort(int *array, int start, int last, int size)
 int partition(int *array, int start, int last, int size)
 {
 	int i, j, pivot_value, pivot_index;
-	
-	/* create a randomised index value that replaces the 
+
+	/*
+	 * create a randomised index value that replaces the
 	 * last array index value using rand function
 	 */
 	pivot_index = start + (rand() % (last - start));
