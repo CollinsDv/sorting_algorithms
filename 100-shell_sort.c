@@ -9,8 +9,8 @@
  */
 void shell_sort(int *array, size_t size)
 {
-	size_t interval, k;
-	int temp, i, j;
+	size_t interval, i, j;
+	int temp;
 
 	for (interval = size / 3; interval >= 1; interval = (interval - 1) / 3)
 	{
