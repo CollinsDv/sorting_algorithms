@@ -23,7 +23,7 @@ void cocktail_sort_list(listint_t **list)
 	while (swapped)
 	{
 		swapped = false;
-		for(current = start; current != end; current = current->next)
+		for(current = start; current != NULL && current != end; current = current->next)
 		{
 			if (current->next && current->n > current->next->n)
 			{
@@ -49,7 +49,7 @@ void cocktail_sort_list(listint_t **list)
 		end = end->prev;
 		swapped = false;
 		printf("Swap is changed to false\n");
-		for (current = end; current != start; current = current->prev)
+		for (current = end; current != NULL && current != start; current = current->prev)
 		{
 			if (current->prev && current->n < current->prev->n)
 			{
