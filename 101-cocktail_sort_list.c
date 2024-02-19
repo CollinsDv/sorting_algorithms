@@ -8,7 +8,7 @@
  */
 void cocktail_sort_list(listint_t **list)
 {
-	bool swapped = true, fully_sorted = false;
+	bool swapped = true;
 	listint_t *start, *end, *current, *temp;
 
 	if (*list == NULL || list == NULL)
@@ -20,7 +20,7 @@ void cocktail_sort_list(listint_t **list)
 	while(end->next != NULL)
 		end = end->next;
 
-	while (!fully_sorted)
+	while (swapped)
 	{
 		swapped = false;
 		for(current = start; current != NULL && current != end; current = current->next)
@@ -46,12 +46,9 @@ void cocktail_sort_list(listint_t **list)
 			}
 		}
 		if (!swapped)
-		{
-			fully_sorted = true;
 			break;
-		}
 			
-		end = end->prev;
+		end = current->prev;
 		swapped = false;
 		for (current = end; current != NULL && current != start; current = current->prev)
 		{
@@ -75,10 +72,7 @@ void cocktail_sort_list(listint_t **list)
 			}
 		}
 		if (!swapped)
-		{
-			fully_sorted = true;
 			break;
-		}
-		start = start->next;
+		start = current->next;
 	}
 }
