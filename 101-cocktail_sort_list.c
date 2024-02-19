@@ -91,15 +91,17 @@ void cocktail_sort_list(listint_t **list)
 
 			}
 		}
-		if (!swapped)
-			break;
+		swapped = false;
 		for (current = end->prev; current != *list; current = current->prev)
 		{
 			if (current->n < current->prev->n)
 			{
 				swap_nodes_rev(list, &current, &end);
 				print_list((const listint_t *)*list);
+				swapped = true;
 			}
 		}
+		if (!swapped)
+			break;
 	}
 }
