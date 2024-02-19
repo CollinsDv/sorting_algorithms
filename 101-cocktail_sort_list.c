@@ -71,8 +71,6 @@ void cocktail_sort_list(listint_t **list)
 				print_list(*list);
 			}
 		}
-		if (!swapped)
-			break;
 		start = start->next;
 	}
 }
