@@ -24,7 +24,7 @@ void swap_nodes(listint_t **list, listint_t **current, listint_t **tail)
 	if (temp->next != NULL)
 		temp->next->prev = *current;
 	else
-		*tail = *current
+		*tail = *current;
 	(*current)->prev = temp;
 	temp->next = *current;
 	*current = temp;
@@ -51,9 +51,9 @@ void swap_nodes_rev(listint_t **list, listint_t **current, listint_t **tail)
 	temp->next = (*current)->next;
 	(*current)->prev = temp->prev;
 	if (temp->prev != NULL)
-		temp->prev->next = current;
+		temp->prev->next = *current;
 	else
-		*list = current;
+		*list = *current;
 	(*current)->next = temp;
 	temp->prev = current;
 	*current = temp;
