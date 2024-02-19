@@ -6,7 +6,7 @@
  * @current: Pointer to the current node.
  * Return: void.
  */
-void swap_nodes(listint_t *list)
+void swap_nodes(listint_t *current)
 {
 	int temp;
 
@@ -14,6 +14,20 @@ void swap_nodes(listint_t *list)
 	current->n = current->next->n;
 	current->next->n = temp;
 }
+/**
+ * swap_nodes_rev - Swaps the values of two nodes in a linked list in reverse order.
+ * @current: Pointer to the current node.
+ * Return: void.
+ */
+void swap_nodes_rev(listint_t *current)
+{
+	int temp;
+
+	temp = current->n;
+	current->n = current->prev->n;
+	current->prev->n = temp;
+}
+
 /**
  * cocktail_sort_list - Sorts a doubly linked list of integers in ascending order
  *
@@ -57,7 +71,7 @@ void cocktail_sort_list(listint_t **list)
 			current = end;
 			if (current->n < current->prev->n)
 			{
-				swap_nodes(current);
+				swap_nodes_rev(current);
 				swapped = true;
 				print_list(*list);
 				current = current->prev;
