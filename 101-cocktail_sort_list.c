@@ -24,7 +24,7 @@ void swap_nodes(listint_t **list, listint_t **current, listint_t **tail)
 	if (temp->next != NULL)
 		temp->next->prev = *current;
 	else
-		*end = *current
+		*tail = *current
 	(*current)->prev = temp;
 	temp->next = *current;
 	*current = temp;
@@ -35,6 +35,8 @@ void swap_nodes(listint_t **list, listint_t **current, listint_t **tail)
  *
  * @list: A pointer to the head of the doubly linked list.
  * @current: The first node to be swapped.
+ * @tail: A pointer to the last node in the list.
+ 
  * Return: void
  */
 void swap_nodes_rev(listint_t **list, listint_t **current, listint_t **tail)
