@@ -14,17 +14,17 @@ void swap_nodes(listint_t **list, listint_t **current, listint_t **tail)
 {
 	listint_t *temp;
 
-	temp = current->next;
+	temp = (*current)->next;
 	if ((*current)->prev != NULL)
 		(*current)->prev->next = temp;
 	else
 		*list = temp;
-	current->next = temp->next;
+	(*current)->next = temp->next;
 	temp->prev = (*current)->prev;
 	if (temp->next != NULL)
 		temp->next->prev = *current;
 	else
-		*tail = *current
+		*end = *current
 	(*current)->prev = temp;
 	temp->next = *current;
 	*current = temp;
