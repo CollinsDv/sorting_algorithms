@@ -23,58 +23,53 @@ void cocktail_sort_list(listint_t **list)
 	while (swapped)
 	{
 		swapped = false;
-		current = start;
-
-		while (current && current->next != end->next)
+		for(current = start; current != NULL && current != end; current = current->next)
 		{
-			if (current->n > current->next->n)
+			if (current->next && current->n > current->next->n)
 			{
 				temp = current->next;
-                if (current->prev)
-                    current->prev->next = temp;
-                if (temp->next)
-                    temp->next->prev = current;
-                current->next = temp->next;
-                temp->prev = current->prev;
-                current->prev = temp;
-                temp->next = current;
-                if (current == *list)
-                    *list = temp;
-                swapped = true;
-                print_list(*list);
-			}
-			else
-				current = current->next;
-			
-			if (!swapped)
-				break;
-			
-			swapped = false;
-			current = end;
-
-			while (current != start)
-			{
-				if (current->n < current->prev->n)
-				{
-					temp = current->prev;
-					if (temp->prev)
-						temp->prev->next = current;
-					if (current->next)
-						current->next->prev = temp;
-					temp->next = current->next;
-					current->prev = temp->prev;
-					temp->prev = current;
-					current->next = temp;
-					if (current == *list)
-						*list = current;
-					swapped = true;
-					print_list(*list);
-				}
+				current->next = temp->next;
+				if (temp->next != NULL)
+					temp->next->prev = current;
+				temp->prev = current->prev;
+				if (current->prev != NULL)
+					current->prev->next = temp;
 				else
-					current = current->prev;
+				{
+					*list = temp;
+					start = temp;
+				}
+				current->prev = temp;
+				temp->next = current;
+				swapped = true;
+				print_list(*list);
 			}
 		}
 		end = end->prev;
+		swapped = false;
+		for (current = end; current != NULL && current != start; current = current->prev)
+		{
+			if (current->prev && current->n < current->prev->n)
+			{
+				temp = current->prev;
+				if (temp->prev != NULL)
+				temp->prev->next = current;
+				else
+					*list = current;
+				if (current->next != NULL)
+					current->next->prev = temp;
+				else
+					end = temp;
+				current->prev = temp->prev;
+				temp->next = current->next;
+				current->next = temp;
+				temp->prev = current;
+				swapped = true;
+				print_list(*list);
+			}
+		}
+		if (!swapped)
+				break;
 		start = start->next;
 	}
 }
