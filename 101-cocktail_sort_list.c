@@ -74,7 +74,7 @@ void cocktail_sort_list(listint_t **list)
 					current = current->prev;
 			}
 		}
-		end = current->prev;
-		start = current->next;
+		end = end->prev;
+		start = start->next;
 	}
 }
