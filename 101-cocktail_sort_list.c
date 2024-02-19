@@ -31,12 +31,12 @@ void swap_nodes(listint_t **list, listint_t **current, listint_t **tail)
 }
 
 /**
- * Swaps the positions of two nodes in a doubly linked list in reverse order.
+ * swap_nodes_rev - Swaps the positions of two nodes in a doubly
+ * linked list in reverse order.
  *
  * @list: A pointer to the head of the doubly linked list.
  * @current: The first node to be swapped.
  * @tail: A pointer to the last node in the list.
-
  * Return: void
  */
 void swap_nodes_rev(listint_t **list, listint_t **current, listint_t **tail)
