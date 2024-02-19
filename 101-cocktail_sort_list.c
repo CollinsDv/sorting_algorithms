@@ -23,49 +23,53 @@ void cocktail_sort_list(listint_t **list)
 	while (swapped)
 	{
 		swapped = false;
-		for(current = start; current != NULL && current != end; current = current->next)
+		current = start;
+
+		while (current && current->next != end->next)
 		{
-			if (current->next && current->n > current->next->n)
+			if (current->n > current->next->n)
 			{
+				if (current == *list)
+					*list = current->next;
+				if (current->next == end)
+					end = current;
 				temp = current->next;
 				current->next = temp->next;
-				if (temp->next != NULL)
-					temp->next->prev = current;
-				temp->prev = current->prev;
-				if (current->prev != NULL)
-					current->prev->next = temp;
-				else
-					*list = temp;
-				current->prev = temp;
 				temp->next = current;
 				swapped = true;
-				print_list(*list);
+				print_list(list);
 			}
-		}
-		if (!swapped)
-			break;
+			else
+				current = current->next;
 			
-		end = end->prev;
-		swapped = false;
-		for (current = end; current != NULL && current != start; current = current->prev)
-		{
-			if (current->prev && current->n < current->prev->n)
+			if (!swapped)
+				break;
+			
+			swapped = false;
+			current = end;
+
+			while (current != start)
 			{
-				temp = current->prev;
-				if (temp->prev != NULL)
-				temp->prev->next = current;
+				if (current->n < current->prev->n)
+				{
+					if (current->prev == start)
+						start = current;
+					temp = current->prev;
+					current->prev = temp->prev;
+					temp->prev = current;
+					temp->next = current->next;
+
+					if (current->next != NULL)
+						current->next->prev = temp;
+					current->next = temp;
+					swapped = true;
+					print_list(list);
+				}
 				else
-					*list = current;
-				if (current->next != NULL)
-					current->next->prev = temp;
-				current->prev = temp->prev;
-				temp->next = current->next;
-				current->next = temp;
-				temp->prev = current;
-				swapped = true;
-				print_list(*list);
+					current = current->prev;
 			}
 		}
-		start = start->next;
+		end = current->prev;
+		start = current->next;
 	}
 }
