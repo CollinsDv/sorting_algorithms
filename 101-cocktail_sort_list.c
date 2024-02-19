@@ -75,13 +75,13 @@ void cocktail_sort_list(listint_t **list)
 	if (*list == NULL || list == NULL || (*list)->next == NULL)
 		return;
 
-	for(end = *list; end->next != NULL;)
+	for (end = *list; end->next != NULL;)
 		end = end->next;
 
 	while (swapped)
 	{
 		swapped = false;
-		for(current = *list; current != end; current = current->next)
+		for (current = *list; current != end; current = current->next)
 		{
 			if (current->n > current->next->n)
 			{
