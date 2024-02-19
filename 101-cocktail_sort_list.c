@@ -38,14 +38,15 @@ void swap_nodes_rev(listint_t **list, listint_t *current)
 	current->prev = temp->prev;
 	if (temp->prev != NULL)
 		temp->prev->next = current;
+	else
+		*list = current;
 	temp->next = current->next;
 	if (current->next != NULL)
 		current->next->prev = temp;
-	else
-		*list = temp;
 	current->next = temp;
 	temp->prev = current;
 }
+
 
 /**
  * cocktail_sort_list - Sorts a doubly linked list of integers in ascending order
