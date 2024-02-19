@@ -84,7 +84,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (current->n > current->next->n)
 			{
-				swap_nodes(list, &end, &current);
+				swap_nodes(list, &current, &end);
 				print_list((const listint_t *)*list);
 				swapped = true;
 			
@@ -96,7 +96,7 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (current->n < current->prev->n)
 			{
-				swap_nodes_rev(list, &end, &current);
+				swap_nodes_rev(list, &current, &end);
 				print_list((const listint_t *)*list);
 			}
 		}
