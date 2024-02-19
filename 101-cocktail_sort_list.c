@@ -11,7 +11,7 @@
  */
 void swap_nodes(listint_t **list, listint_t *current)
 {
-	listint_t *temp
+	listint_t *temp;
 
 	if (current == NULL || current->next == NULL)
 		return;
@@ -37,7 +37,7 @@ void swap_nodes(listint_t **list, listint_t *current)
  */
 void swap_nodes_rev(listint_t **list, listint_t *current)
 {
-	listint_t *temp 
+	listint_t *temp;
 
 	if (current == NULL || current->next == NULL)
 		return;
