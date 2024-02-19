@@ -36,7 +36,7 @@ void swap_nodes(listint_t **list, listint_t **current, listint_t **tail)
  * @list: A pointer to the head of the doubly linked list.
  * @current: The first node to be swapped.
  * @tail: A pointer to the last node in the list.
- 
+
  * Return: void
  */
 void swap_nodes_rev(listint_t **list, listint_t **current, listint_t **tail)
@@ -61,7 +61,8 @@ void swap_nodes_rev(listint_t **list, listint_t **current, listint_t **tail)
 
 
 /**
- * cocktail_sort_list - Sorts a doubly linked list of integers in ascending order
+ * cocktail_sort_list - Sorts a doubly linked list of integers
+ * in ascending order
  *
  * @list: The list to be printed
  * Return: void
@@ -73,10 +74,10 @@ void cocktail_sort_list(listint_t **list)
 
 	if (*list == NULL || list == NULL || (*list)->next == NULL)
 		return;
-	
+
 	for(end = *list; end->next != NULL;)
 		end = end->next;
-	
+
 	while (swapped)
 	{
 		swapped = false;
@@ -87,7 +88,7 @@ void cocktail_sort_list(listint_t **list)
 				swap_nodes(list, &current, &end);
 				print_list((const listint_t *)*list);
 				swapped = true;
-			
+
 			}
 		}
 		if (!swapped)
