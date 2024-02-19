@@ -26,22 +26,22 @@ void cocktail_sort_list(listint_t **list)
 		for(current = start; current != end; current = current->next)
 		{
 			if (current->next && current->n > current->next->n)
-            {
-                temp = current->next;
-                current->next = temp->next;
-                if (temp->next != NULL)
-                    temp->next->prev = current;
-                temp->prev = current->prev;
-                if (current->prev != NULL)
-                    current->prev->next = temp;
-                else
-                    *list = temp;
-                current->prev = temp;
-                temp->next = current;
-                swapped = true;
-                print_list(*list);
+			{
+				temp = current->next;
+				current->next = temp->next;
+				if (temp->next != NULL)
+					temp->next->prev = current;
+				temp->prev = current->prev;
+				if (current->prev != NULL)
+					current->prev->next = temp;
+				else
+					*list = temp;
+				current->prev = temp;
+				temp->next = current;
+				swapped = true;
+				print_list(*list);
 				printf("Forward pass done\n");
-            }
+			}
 		}
 		if (!swapped)
 			break;
@@ -50,24 +50,24 @@ void cocktail_sort_list(listint_t **list)
 		for (current = end; current != start; current = current->prev)
 		{
 			if (current->prev && current->n < current->prev->n)
-            {
-                temp = current->prev;
-                current->prev = temp->prev;
-                if (temp->prev != NULL)
-                    temp->prev->next = current;
-                else
-                    *list = current;
-                temp->next = current->next;
-                if (current->next != NULL)
-                    current->next->prev = temp;
-                current->next = temp;
-                temp->prev = current;
-                if (temp->prev != NULL)
-                    temp->prev->next = temp;
-                swapped = true;
-                print_list(*list);
+			{
+				temp = current->prev;
+				current->prev = temp->prev;
+				if (temp->prev != NULL)
+					temp->prev->next = current;
+				else
+					*list = current;
+				temp->next = current->next;
+				if (current->next != NULL)
+					current->next->prev = temp;
+				current->next = temp;
+				temp->prev = current;
+				if (current->prev != NULL)
+					current->prev->next = current;
+				swapped = true;
+				print_list(*list);
 				printf("Backward pass done\n");
-            }
+			}
 		}
 		if (!swapped)
 				break;
