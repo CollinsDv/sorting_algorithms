@@ -40,6 +40,7 @@ void cocktail_sort_list(listint_t **list)
                 temp->next = current;
                 swapped = true;
                 print_list(*list);
+				printf("Forward pass done\n")
             }
 		}
 		if (!swapped)
@@ -65,6 +66,7 @@ void cocktail_sort_list(listint_t **list)
                     temp->prev->next = temp;
                 swapped = true;
                 print_list(*list);
+				printf("Backward pass done\n")
             }
 		}
 		if (!swapped)
