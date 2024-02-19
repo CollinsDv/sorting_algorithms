@@ -76,7 +76,7 @@ void cocktail_sort_list(listint_t **list)
 		}
 		if (!swapped)
 		{
-			fully_sorted = true
+			fully_sorted = true;
 			break;
 		}
 		start = start->next;
