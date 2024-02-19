@@ -40,13 +40,15 @@ void cocktail_sort_list(listint_t **list)
 				temp->next = current;
 				swapped = true;
 				print_list(*list);
-				printf("Forward pass done\n");
+				printf("Forward pass done and swap done\n");
 			}
+			printf("Forward pass done\n");
 		}
 		if (!swapped)
 			break;
 		end = end->prev;
 		swapped = false;
+		printf("Swap is changed to false\n");
 		for (current = end; current != start; current = current->prev)
 		{
 			if (current->prev && current->n < current->prev->n)
@@ -66,11 +68,13 @@ void cocktail_sort_list(listint_t **list)
 					current->prev->next = current;
 				swapped = true;
 				print_list(*list);
-				printf("Backward pass done\n");
+				printf("Backward pass done and swap done\n");
 			}
 		}
+		printf("backward pass done\n");
 		if (!swapped)
 				break;
 		start = start->next;
+		printf("end of full pass\n");
 	}
 }
