@@ -85,7 +85,7 @@ void cocktail_sort_list(listint_t **list)
 		}
 		if (!swapped)
 			break;
-
+		end = end->prev;
 		swapped = false;
 		for (current = end->prev; current != start; current = current->prev)
 		{
@@ -95,10 +95,9 @@ void cocktail_sort_list(listint_t **list)
 				swapped = true;
 				print_list(*list);
 			}
-			if (!swapped)
-				break;
-			start = start->next;
-			end = end->prev;
 		}
+		if (!swapped)
+				break;
+		start = start->next;
 	}
 }
