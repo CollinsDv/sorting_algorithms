@@ -55,7 +55,7 @@ void swap_nodes_rev(listint_t **list, listint_t **current, listint_t **tail)
 	else
 		*list = *current;
 	(*current)->next = temp;
-	temp->prev = current;
+	temp->prev = *current;
 	*current = temp;
 }
 
