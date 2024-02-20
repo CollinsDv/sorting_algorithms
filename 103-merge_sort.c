@@ -51,6 +51,7 @@ void merge_sort_recursive(int *array, int *temp, size_t start, size_t end)
 /**
  * merge - merges arrays in ascending order
  *
+ * @array: array to merge
  * @temp: temporary buffer
  * @start: start index
  * @mid: midpoint
