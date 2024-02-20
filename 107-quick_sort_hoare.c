@@ -1,7 +1,7 @@
 #include "sort.h"
 
 void partition(int *arr, size_t size, int left, int right);
-void swap(int *arr, size_t size, int *a, int *b);
+void swap(int *a, int *b);
 
 /**
  * quick_sort - implement quick sort of elements in ascending order
