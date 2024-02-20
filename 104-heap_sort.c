@@ -34,8 +34,7 @@ void heap_sort(int *array, size_t size)
 		while (root * 2 + 1 <= end)
 		{
 			child = root * 2 + 1;
-			if (child < end && array[child] < array[child + 1])
-				child++;
+			child = (child < end && array[child] < array[child + 1]) ? child + 1 : child;
 			if (array[root] < array[child])
 			{
 				swap(&array[root], &array[child]);
@@ -57,8 +56,7 @@ void heap_sort(int *array, size_t size)
 		while (root * 2 + 1 <= end)
 		{
 			child = root * 2 + 1;
-			if (child < end && array[child] < array[child + 1])
-				child++;
+			child = (child < end && array[child] < array[child + 1]) ? child + 1 : child;
 			if (array[root] < array[child])
 			{
 				swap(&array[root], &array[child]);
