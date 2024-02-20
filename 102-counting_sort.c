@@ -25,16 +25,18 @@ void counting_sort(int *array, size_t size)
 	/*allocating memory to count array and initializing them to 0*/
 	count = (int *)malloc((max + 1) * sizeof(int));
 	buffer = malloc(size * sizeof(int));
-
 	if (count == NULL || buffer == NULL)
 		return;
+
 	for (i = 0; i <= max; i++)
 		count[i] = 0;
 	/*storing count of each element in the count array*/
 	for (h = 0; h < (ssize_t)size; h++)
 		count[array[h]]++;
+	/*Print the counting array*/
+	print_array(count, max + 1);
 	/*storing cumulative count in each of the elements*/
-	for (i = 1; i < max; i++)
+	for (i = 1; i <= max; i++)
 		count[i] += count[i -1];
 	/*copying into original array*/
 	for (h = (ssize_t)size - 1; h >= 0; h--)
