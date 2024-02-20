@@ -42,7 +42,7 @@ void counting_sort(int *array, size_t size)
 		buffer[count[array[h]] - 1] = array[h];
 		count[array[h]]--;
 	}
-	for (h = 0; h < size; h++)
+	for (h = 0; h < (ssize_t)size; h++)
 	{
 		array[h] = buffer[h];
 	}
