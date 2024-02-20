@@ -1,8 +1,8 @@
 #include "sort.h"
 
-void partition(int *arr, size_t size, int left, int right);
+int partition(int *arr, size_t size, int left, int right);
 void swap(int *a, int *b);
-
+void hoare_sort(int *array, size_t size, int i, int j);
 /**
  * quick_sort - implement quick sort of elements in ascending order
  * @array: array to be sorted
@@ -12,7 +12,7 @@ void quick_sort_hoare(int *array, size_t size)
 {
 	/* ensure the array has more than one element to sort */
 	if (array && size > 1)
-		partition(array, size, 0, size - 1);
+		hoare_sort(array, size, 0, size - 1);
 }
 
 /**
@@ -25,37 +25,28 @@ void quick_sort_hoare(int *array, size_t size)
  *
  * Return: None
  */
-void partition(int *arr, size_t size, int left, int right)
+int partition(int *arr, size_t size, int left, int right)
 {
 	int pivot, i, j;
 
-	if (left >= right)
-        return;
 	pivot = arr[right]; /* set pivot value to last element */
-	i = left - 1;
-	j = right;
-	printf("Before partitioning: left = %d, right = %d\n", left, right);
-	while (1)
+	for (i = left - 1, j = right + 1; i < j)
 	{
 		do {
 			i++;
-		} while (i < right && arr[i] < pivot);
+		} while (arr[i] < pivot);
 
 		do {
 			j--;
-		} while (j > left && arr[j] > pivot);
+		} while (arr[j] > pivot);
 
-		if (i >= j)
+		if (i < j)
 		{
-			swap(&arr[i], &arr[j]);
+			swap(arr + i, arr + j);
 			print_array(arr, size);
-			break;
 		}
-		swap(&arr[i], &arr[j]);
-		print_array(arr, size);
 	}
-	partition(arr, size, left, j - 1);
-    partition(arr, size, j + 1, right);
+	return (i);
 }
 
 /**
@@ -77,5 +68,25 @@ void swap(int *a, int *b)
 		tmp = *a;
 		*a = *b;
 		*b = tmp;
+	}
+}
+/**
+ * hoare_sort - Implement the quicksort algorithm through recursion.
+ * @array: An array of integers to sort.
+ * @size: The size of the array.
+ * @left: The starting index of the array partition to order.
+ * @right: The ending index of the array partition to order.
+ *
+ * Description: Uses the Hoare partition scheme.
+ */
+void hoare_sort(int *array, size_t size, int i, int j)
+{
+	int part;
+
+	if (j - i > 0)
+	{
+		part = partition(array, size, i, j);
+		hoare_sort(array, size, i, part - 1);
+		hoare_sort(array, size, part, j);
 	}
 }
