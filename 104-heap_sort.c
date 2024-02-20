@@ -1,29 +1,25 @@
 #include "sort.h"
 
 
+
 /**
- * Swaps the values of two integers and updates the root pointer.
+ * Swaps the values of two elements in an array and updates the array.
  *
- * This function swaps the values of two integers pointed to by `a` and `b`.
- * It also updates the root pointer to point to the new value of `b`.
- *
- * @a: Pointer to the first integer.
- * @b: Pointer to the second integer.
- * @root: Pointer to the root pointer.
- * @array: Pointer to the array.
- * @size: Size of the array.
- * Return: void.
+ * @array: The array containing the elements.
+ * @root:The index of the first element to be swapped.
+ * @child: The index of the second element to be swapped.
+ * @size:The size of the array.
+ * Return: void
  */
-void swap_and_update(int *a, int *b, int **root, int *array, size_t size)
+void swap_and_update(int *array, size_t root, size_t child, size_t size)
 {
-    int temp;
+	int temp;
 
-    temp = *a;
-    *a = *b;
-    *b = temp;
+	temp = array[root];
+	array[root] = array[child];
+	array[child] = temp;
 
-    print_array(array, size);
-    *root = b;
+	print_array(array, size);
 }
 
 /**
@@ -48,7 +44,7 @@ void heap_sort(int *array, size_t size)
 			if (child < end && array[child] < array[child + 1])
 				child++;
 			if (array[root] < array[child])
-				swap_and_update(root, child, &root, array, size);
+				swap_and_update(array, root, child, size);
 			else
 				break;
 		}
@@ -67,7 +63,7 @@ void heap_sort(int *array, size_t size)
 			if (child < end && array[child] < array[child + 1])
 				child++;
 			if (array[root] < array[child])
-				swap_and_update(root, child, &root, array, size);
+				swap_and_update(array, root, child, size);
 			else
 				break;
 		}
