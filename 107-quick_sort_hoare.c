@@ -44,7 +44,7 @@ void partition(int *arr, size_t size, int left, int right)
 		if (i >= j)
 			return;
 
-		swap(arr, size, &arr[i], &arr[j]);
+		swap(&arr[i], &arr[j]);
 		print_array(arr, size);
 	}
 
