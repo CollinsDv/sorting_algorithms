@@ -53,8 +53,7 @@ void heap_sort(int *array, size_t size)
 	}
 	while (end > 0)
 	{
-		swap(&array[end], &array[0]);
-		print_array(array, size);
+		swap_and_update(array, end, 0, size);
 		end--;
 		root = 0;
 		while (root * 2 + 1 <= end)
