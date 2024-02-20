@@ -24,8 +24,8 @@ void merge_sort(int *array, size_t size)
 		return;
 	}
 
-	/* ensure array has more than 1 element */	
-	if (array && size > 1) 
+	/* ensure array has more than 1 element */
+	if (array && size > 1)
 		mergesort_recursion(array, 0, size - 1, temp);
 
 	free(temp);
