@@ -1,6 +1,8 @@
 #include "sort.h"
+
 void partition(int *arr, size_t size, size_t left, size_t right);
 void swap(int *arr, size_t size, int *a, int *b);
+
 /**
  * quick_sort - implement quick sort of elements in ascending order
  * @array: array to be sorted
@@ -12,6 +14,7 @@ void quick_sort(int *array, size_t size)
 	if (array && size > 1)
 		partition(array, size, 0, size - 1);
 }
+
 /**
  * partition - sorts list according to a pivot value
  *
@@ -56,7 +59,7 @@ void partition(int *arr, size_t size, size_t left, size_t right)
  *
  * Return: None
  */
-void swap_elem(int *arr, size_t size, int *a, int *b)
+void swap(int *arr, size_t size, int *a, int *b)
 {
 	int tmp;
 
