@@ -4,7 +4,7 @@ int partition(int *arr, size_t size, int left, int right);
 void swap(int *a, int *b);
 void hoare_sort(int *array, size_t size, int i, int j);
 /**
- * quick_sort - implement quick sort of elements in ascending order
+ * quick_sort_hoare - implement quick sort of elements in ascending order
  * @array: array to be sorted
  * @size: array size
  */
@@ -52,8 +52,6 @@ int partition(int *arr, size_t size, int left, int right)
 /**
  * swap - swap value of indices in array
  *
- * @arr: array
- * @size: size of array
  * @a: pointer to index in array
  * @b: pointer to index in array
  *
@@ -74,8 +72,8 @@ void swap(int *a, int *b)
  * hoare_sort - Implement the quicksort algorithm through recursion.
  * @array: An array of integers to sort.
  * @size: The size of the array.
- * @left: The starting index of the array partition to order.
- * @right: The ending index of the array partition to order.
+ * @i: The starting index of the array partition to order.
+ * @j: The ending index of the array partition to order.
  *
  * Description: Uses the Hoare partition scheme.
  */
