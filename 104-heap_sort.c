@@ -14,19 +14,6 @@ void swap(int *a, int *b)
 	*a = *b;
 	*b = temp;
 }
-/**
- * swap_and_print - Swaps two elements in an array and prints the array.
- *
- * @array: The array containing the elements.
- * @a: Pointer to the first element to be swapped.
- * @b: Pointer to the second element to be swapped.
- * @size: The size of the array.
- */
-void swap_and_print(int *array, int *a, int *b, size_t size)
-{
-	swap(a, b);
-	print_array(array, size);
-}
 
 /**
  * heap_sort - Sorts an array of integers in ascending order
@@ -51,7 +38,8 @@ void heap_sort(int *array, size_t size)
 				child++;
 			if (array[root] < array[child])
 			{
-				swap_and_print(array, &array[end], &array[0], size);
+				swap(&array[root], &array[child]);
+				print_array(array, size);
 				root = child;
 			}
 			else
@@ -62,7 +50,8 @@ void heap_sort(int *array, size_t size)
 	}
 	while (end > 0)
 	{
-		swap_and_print(array, &array[end], &array[0], size);
+		swap(&array[end], &array[0]);
+		print_array(array, size);
 		end--;
 		root = 0;
 		while (root * 2 + 1 <= end)
@@ -72,7 +61,8 @@ void heap_sort(int *array, size_t size)
 				child++;
 			if (array[root] < array[child])
 			{
-				swap_and_print(array, &array[end], &array[0], size);
+				swap(&array[root], &array[child]);
+				print_array(array, size);
 				root = child;
 			}
 			else
