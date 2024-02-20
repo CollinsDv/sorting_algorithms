@@ -9,15 +9,15 @@
  */
 void counting_sort(int *array, size_t size)
 {
-	int max, i,;
+	int max, i;
 	int *count, *buffer;
-	size_t h;
+	ssize_t h;
 
 	if (array == NULL || size < 2)
 		return;
 	max = array[0];
 	/*finding largest element in the array*/
-	for (h = 0; h < size; h++)
+	for (h = 0; h < (ssize_t)size; h++)
 	{
 		if (max < array[h])
 			max = array[h];
@@ -31,18 +31,18 @@ void counting_sort(int *array, size_t size)
 	for (i = 0; i <= max; i++)
 		count[i] = 0;
 	/*storing count of each element in the count array*/
-	for (h = 0; h < size; h++)
+	for (h = 0; h < (ssize_t)size; h++)
 		count[array[h]]++;
 	/*storing cumulative count in each of the elements*/
 	for (i = 1; i < max; i++)
 		count[i] += count[i -1];
 	/*copying into original array*/
-	for (h = size - 1; h >= 0; j--)
+	for (h = (ssize_t)size - 1; h >= 0; h--)
 	{
 		buffer[count[array[h]] - 1] = array[h];
 		count[array[h]]--;
 	}
-	for (h = 0; h < size; k++)
+	for (h = 0; h < size; h++)
 	{
 		array[h] = buffer[h];
 	}
