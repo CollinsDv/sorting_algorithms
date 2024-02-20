@@ -65,7 +65,7 @@ void partition(int *arr, size_t size, int left, int right)
  *
  * Return: None
  */
-void swap(int *arr, size_t size, int *a, int *b)
+void swap(int *a, int *b)
 {
 	int tmp;
 
