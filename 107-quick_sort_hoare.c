@@ -42,18 +42,16 @@ void partition(int *arr, size_t size, int left, int right)
 		} while (j > left && arr[j] > pivot);
 
 		if (i >= j)
-		{
-			/* lesser partition */
-			if (j > left)
-				partition(arr, size, left, j);
-			/* greater partition */
-			if (i < right)
-				partition(arr, size, j + 1, right);
-			return;
-		}
+			break;
 		swap(&arr[i], &arr[j]);
 		print_array(arr, size);
 	}
+	/* lesser partition */
+	if (j > left)
+		partition(arr, size, left, j);
+	/* greater partition */
+	if (i < right)
+		partition(arr, size, j + 1, right);
 }
 
 /**
