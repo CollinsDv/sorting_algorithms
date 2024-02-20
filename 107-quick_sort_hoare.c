@@ -27,7 +27,7 @@ void quick_sort_hoare(int *array, size_t size)
  */
 void partition(int *arr, size_t size, int left, int right)
 {
-	int privot, i, j;
+	int pivot, i, j;
 
 	if (left >= right)
         return;
