@@ -34,6 +34,7 @@ void partition(int *arr, size_t size, int left, int right)
 	pivot = arr[right]; /* set pivot value to last element */
 	i = left - 1;
 	j = right + 1;
+	printf("Before partitioning: left = %d, right = %d\n", left, right);
 	while (1)
 	{
 		do {
