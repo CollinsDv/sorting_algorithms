@@ -54,7 +54,7 @@ void partition(int *arr, size_t size, int left, int right)
 		swap(&arr[i], &arr[j]);
 		print_array(arr, size);
 	}
-	partition(arr, size, left, j);
+	partition(arr, size, left, j - 1);
     partition(arr, size, j + 1, right);
 }
 
