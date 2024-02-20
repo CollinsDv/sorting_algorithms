@@ -1,83 +1,72 @@
 #include "sort.h"
-#include <time.h>
-
+void partition(int *arr, size_t size, size_t left, size_t right);
+void swap(int *arr, size_t size, int *a, int *b);
 /**
- * swap - swaps array index values
- *
- * @p: 1st index
- * @q: 2nd index
- */
-void swap(int *p, int *q)
-{
-	int temp = *p;
-
-	*p = *q;
-	*q = temp;
-}
-
-/**
- * quick_sort - wwrapper function
- *
- * @array: pointer to array
- * @size: size of the array
+ * quick_sort - implement quick sort of elements in ascending order
+ * @array: array to be sorted
+ * @size: array size
  */
 void quick_sort(int *array, size_t size)
 {
-	/* will identify the upper and lower bound indices */
+	/* ensure the array has more than one element to sort */
 	if (array && size > 1)
-	{
-		recursion_sort(array, 0, size - 1, size);
-		srand(time(NULL));
-	}
+		partition(array, size, 0, size - 1);
 }
-
 /**
- * recursion_sort - a recursion of the quick_sort algorithm
+ * partition - sorts list according to a pivot value
  *
- * @array: pointer to array
- * @start: 1st index
- * @last: last index
- * @size: size of array
- */
-void recursion_sort(int *array, int start, int last, int size)
-{
-	if (start < last)
-	{
-		/* get pivot value */
-		int pivot = partition(array, start, last, size);
-
-		/* split into lower value list and high value lists from pivot */
-		recursion_sort(array, start, pivot - 1, size);
-		recursion_sort(array, pivot + 1, last, size);
-	}
-}
-
-/**
- * partition - it will partition the list while sorting
+ * @arr: array
+ * @size: array size
+ * @left: leftmost element
+ * @right: rightmost element
  *
- * @array: pointer to array
- * @start: pointer to start value index
- * @last: pointer to last value index
- * @size: size of array
+ * Return: None
  */
-int partition(int *array, int start, int last, int size)
+void partition(int *arr, size_t size, size_t left, size_t right)
 {
-	int i, j, pivot_value;
+	int pivot = arr[right]; /* set pivot value to last element */
+	size_t i, j;
 
-	pivot_value = array[last];
-
-	i = start;
-
-	for (j = start; j < last; j++)
+	if (left < right)
 	{
-		if (array[j] <= pivot_value)
+		for (i = j = left; j < right; j++)
 		{
-			swap(&array[i], &array[j]);
-			i++;
-			/* print_array(array ,size); */
+			if (arr[j] <= pivot)
+			{
+				swap_elem(arr, size, &arr[j], &arr[i]);
+				i++;
+			}
 		}
+		swap_elem(arr, size, &arr[j], &arr[i]);
+
+		/* lesser partition */
+		if (i > 0)
+			partition(arr, size, left, i - 1);
+		/* greater partition */
+		partition(arr, size, i + 1, right);
 	}
-	swap(&array[i], &array[last]);
-	print_array(array, size);
-	return (i);
+}
+/**
+ * swap - swap value of indices in array
+ *
+ * @arr: array
+ * @size: size of array
+ * @a: pointer to index in array
+ * @b: pointer to index in array
+ *
+ * Return: None
+ */
+void swap_elem(int *arr, size_t size, int *a, int *b)
+{
+	int tmp;
+
+	if (*a != *b)
+	{
+		tmp = *a;
+		*a = *b;
+		*b = tmp;
+
+		/* print update of the array */
+		print_array(arr, size);
+	}
 }
