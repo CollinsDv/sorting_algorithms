@@ -33,11 +33,11 @@ void counting_sort(int *array, size_t size)
 	/*storing count of each element in the count array*/
 	for (h = 0; h < (ssize_t)size; h++)
 		count[array[h]]++;
-	/*Print the counting array*/
-	print_array(count, max + 1);
 	/*storing cumulative count in each of the elements*/
 	for (i = 1; i <= max; i++)
 		count[i] += count[i -1];
+	/*Print the counting array*/
+	print_array(count, max + 1);
 	/*copying into original array*/
 	for (h = (ssize_t)size - 1; h >= 0; h--)
 	{
