@@ -35,11 +35,11 @@ void partition(int *arr, size_t size, int left, int right)
 	{
 		do {
 			i++;
-		} while (arr[i] < pivot);
+		} while (i < right && arr[i] < pivot);
 
 		do {
 			j--;
-		} while (arr[j] > pivot);
+		} while (j > left && arr[j] > pivot);
 
 		if (i >= j)
 		{
