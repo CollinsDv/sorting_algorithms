@@ -1,127 +1,90 @@
 #include "sort.h"
-#include "math.h"
 
-void _copy(int *arr, int *temp, size_t size);
-void merge(int *array, size_t l, size_t m, size_t r, int *temp);
-void mergesort_recursion(int *array, size_t l, size_t r, int *temp);
+void merge(int *array, int *temp, size_t start, size_t mid, size_t end);
+void merge_sort_recursive(int *array, int *temp, size_t start, size_t end);
+void merge_sort(int *array, size_t size);
 
 /**
- * merge_sort - an implementation of merge sort algorithm
+ * merge_sort - implementation of merge sort algorithm
  *
- * @array: array to sort
- * @size: size of the array
+ * @array: array to be sorted
+ * @size: size of array
  *
- * Return: void
+ * Return: None
  */
 void merge_sort(int *array, size_t size)
 {
-	/* temporary memory buffer */
-	int *temp = malloc(sizeof(*temp) * size);
+	int *temp;
 
-	if (temp == NULL)
-	{
-		printf("malloc failure\n");
+	if (array == NULL || size < 2)
 		return;
-	}
 
-	/* ensure array has more than 1 element */
-	if (array && size > 1)
-		mergesort_recursion(array, 0, size - 1, temp);
+	temp = malloc(sizeof(int) * size);
+	if (temp == NULL)
+		return;
+
+	merge_sort_recursive(array, temp, 0, size);
 
 	free(temp);
 }
 
 /**
- * mergesort_recursion - a recursion of merge_sort
+ * merge_sort_recursive - a recursive to subsequent merge_sort calls
  *
- * @array: array to sort
- * @l: left index
- * @r: right index
- * @temp: temporary buffer
- *
- * Return: void
+ * @array: array/sub array to be merged
+ * @temp: temp buffer
+ * @start: start index
+ * @end: end index
  */
-void mergesort_recursion(int *array, size_t l, size_t r, int *temp)
+void merge_sort_recursive(int *array, int *temp, size_t start, size_t end)
 {
-	size_t m;
+	if (end - start > 1)
+	{
+		size_t mid = start + (end - start) / 2;
 
-	if (l >= r)
-		return;
-
-	/* midpoint */
-	m = l + floor((r - l) / 2);
-
-	/* split the array into sub-arrays */
-	mergesort_recursion(array, l, m, temp);
-	mergesort_recursion(array, m + 1, r, temp);
-
-	/* compare and merge the adjusent nodes */
-	merge(array, l, m, r, temp);
+		merge_sort_recursive(array, temp, start, mid);
+		merge_sort_recursive(array, temp, mid, end);
+		merge(array, temp, start, mid, end);
+	}
 }
 
 /**
- * merge - merges the subsequent sorted arrays from
- *         bottom up approach
+ * merge - merges arrays in ascending order
  *
- * @array: array to merge
- * @l: left index of array / subarray
- * @m: middle index
- * @r: right index
  * @temp: temporary buffer
+ * @start: start index
+ * @mid: midpoint
+ * @end: endpoint
  *
  * Return: None
  */
-void merge(int *array, size_t l, size_t m, size_t r, int *temp)
+void merge(int *array, int *temp, size_t start, size_t mid, size_t end)
 {
-	size_t i_l = m, i_r = r, j = r - l;
-	int l_merged = 0;
+	size_t i = start, j = mid, k = 0;
 
-	printf("Merging...\n[left]: "); /* print sub-arrays */
-	print_array(&array[l], (m + 1) - l);
+	printf("Merging...\n[left]: ");
+	print_array(array + start, mid - start);
+
 	printf("[right]: ");
-	print_array(&array[m + 1], (r + 1) - (m + 1));
+	print_array(array + mid, end - mid);
 
-	for (; i_l >= l && i_r >= m + 1;) /* compare individual elements */
+	while (i < mid && j < end)
 	{
-		if (array[i_r] >= array[i_l])
-			temp[j--] = array[i_r--];
+		if (array[i] < array[j])
+			temp[k++] = array[i++];
 		else
-		{
-			temp[j--] = array[i_l];
-			if (i_l == 0)
-			{
-				l_merged = 1;
-				break;
-			}
-			i_l--;
-		}
+			temp[k++] = array[j++];
 	}
-	/* merges rest of whichever sub-array isn't fully merged */
-	for (; i_r >= m + 1;)
-		temp[j--] = array[i_r--];
-	for (; !l_merged && i_l >= l;)
-	{
-		temp[j--] = array[i_l];
-		if (i_l == 0) /* guards against size_t underflow */
-			break;
-		i_l--;
-	}
-	/* copy sorted temp back to original source array */
-	_copy(&array[l], temp, (r + 1) - l);
-	printf("[Done]: ");
-	/* print sorted array */
-	print_array(&array[l], (r + 1) - l);
-}
-/**
- * _copy - copy contents from temp array to source (same size)
- * @arr: copy destination
- * @temp: copy source
- * @size: size of arrays
- */
-void _copy(int *arr, int *temp, size_t size)
-{
-	size_t i = 0;
 
-	for (; i < size; i++)
-		arr[i] = temp[i];
+	while (i < mid)
+		temp[k++] = array[i++];
+
+	while (j < end)
+		temp[k++] = array[j++];
+
+	for (i = start, k = 0; i < end; i++)
+		array[i] = temp[k++];
+
+	printf("[Done]: ");
+	print_array(array + start, end - start);
 }
