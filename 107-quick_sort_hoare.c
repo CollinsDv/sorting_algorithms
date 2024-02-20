@@ -1,6 +1,6 @@
 #include "sort.h"
 
-void partition(int *arr, size_t size, size_t left, size_t right);
+void partition(int *arr, size_t size, int left, int right);
 void swap(int *arr, size_t size, int *a, int *b);
 
 /**
@@ -8,7 +8,7 @@ void swap(int *arr, size_t size, int *a, int *b);
  * @array: array to be sorted
  * @size: array size
  */
-void quick_sort_hoare(int *array, size_t size);
+void quick_sort_hoare(int *array, size_t size)
 {
 	/* ensure the array has more than one element to sort */
 	if (array && size > 1)
