@@ -2,6 +2,8 @@
 #include "math.h"
 
 void _copy(int *arr, int *temp, size_t size);
+void merge(int *array, size_t l, size_t m, size_t r, int *temp);
+void mergesort_recursion(int *array, size_t l, size_t r, int *temp);
 
 /**
  * merge_sort - an implementation of merge sort algorithm
