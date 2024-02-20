@@ -36,11 +36,11 @@ void partition(int *arr, size_t size, size_t left, size_t right)
 		{
 			if (arr[j] <= pivot)
 			{
-				swap_elem(arr, size, &arr[j], &arr[i]);
+				swap(arr, size, &arr[j], &arr[i]);
 				i++;
 			}
 		}
-		swap_elem(arr, size, &arr[j], &arr[i]);
+		swap(arr, size, &arr[j], &arr[i]);
 
 		/* lesser partition */
 		if (i > 0)
