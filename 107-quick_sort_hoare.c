@@ -45,12 +45,15 @@ void partition(int *arr, size_t size, int left, int right)
 			return;
 
 		swap(arr, size, &arr[i], &arr[j]);
+		print_array(arr, size);
 	}
 
 	/* lesser partition */
-	partition(arr, size, left, j);
+	if (j > left)
+		partition(arr, size, left, j);
 	/* greater partition */
-	partition(arr, size, j + 1, right);
+	if (i < right)
+		partition(arr, size, j + 1, right);
 }
 /**
  * swap - swap value of indices in array
@@ -71,8 +74,5 @@ void swap(int *arr, size_t size, int *a, int *b)
 		tmp = *a;
 		*a = *b;
 		*b = tmp;
-
-		/* print update of the array */
-		print_array(arr, size);
 	}
 }
