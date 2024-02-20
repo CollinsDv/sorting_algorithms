@@ -28,8 +28,8 @@ void quick_sort_hoare(int *array, size_t size)
 void partition(int *arr, size_t size, int left, int right)
 {
 	int pivot = arr[right]; /* set pivot value to last element */
-	int i = left;
-	int j = right;
+	int i = left - 1;
+	int j = right + 1;
 
 	while (1)
 	{
@@ -42,16 +42,18 @@ void partition(int *arr, size_t size, int left, int right)
 		} while (j > left && arr[j] > pivot);
 
 		if (i >= j)
-			break;
+		{
+			/* lesser partition */
+			if (j > left)
+				partition(arr, size, left, j);
+			/* greater partition */
+			if (i < right)
+				partition(arr, size, i + 1, right);
+			return;
+		}
 		swap(&arr[i], &arr[j]);
 		print_array(arr, size);
 	}
-	/* lesser partition */
-	if (j > left)
-		partition(arr, size, left, j - 1);
-	/* greater partition */
-	if (i < right)
-		partition(arr, size, i + 1, right);
 }
 
 /**
