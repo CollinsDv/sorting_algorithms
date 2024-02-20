@@ -33,7 +33,7 @@ void partition(int *arr, size_t size, int left, int right)
         return;
 	pivot = arr[right]; /* set pivot value to last element */
 	i = left - 1;
-	j = right + 1;
+	j = right;
 	printf("Before partitioning: left = %d, right = %d\n", left, right);
 	while (1)
 	{
@@ -47,12 +47,10 @@ void partition(int *arr, size_t size, int left, int right)
 
 		if (i >= j)
 		{
-			/* lesser partition */
-			if (j > left)
-				partition(arr, size, left, j);
-			/* greater partition */
-			if (i < right)
-				partition(arr, size, i + 1, right);
+			swap(&arr[i], &arr[j]);
+			print_array(arr, size);
+			partition(arr, size, left, j);
+			partition(arr, size, i + 1, right);
 			return;
 		}
 		swap(&arr[i], &arr[j]);
